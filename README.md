@@ -44,13 +44,16 @@ The connector limits the request to 15 MB, applies a 45-second upstream timeout,
 
 ## Checks
 
-Run syntax checks:
+Run the automated server and connector tests, then check JavaScript syntax:
 
 ```powershell
+npm test
 npm run check
 ```
 
-The project has no React build, dependency installation, automated browser test suite, or production bundler. The app is served directly by Node. Test camera, microphone, OCR, location, route lookup, and speech synthesis in a browser that supports them and has the relevant permission. Do not interpret a successful syntax check as a full accessibility or browser test.
+The automated suite covers app assets, missing credentials, malformed paths, audio format and size validation, the documented Gnani request shape, provider error handling, Gati's coordinate format, and the key media/speech controls. The app is served directly by Node with no install step or production bundler.
+
+Manual browser checks in headless Edge verified camera capture and track shutdown, fake-microphone recording and WAV conversion, the permission-denial message, settings persistence, phrase display and speech controls, and a live route result. Three generated English text samples were recognized exactly by the real OCR engine. These checks do not test every physical microphone or camera. The Gnani connector was tested with mocked provider responses, not with an API key or account; real transcription still requires credentials and a microphone permission granted by the browser and operating system.
 
 ## Privacy notes
 
